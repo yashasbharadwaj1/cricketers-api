@@ -7,8 +7,6 @@ class gameformat(models.Model):
 
     def __str__(self):
         return self.format
-
-
 class Team(models.Model):
     name = models.CharField(max_length=250)
     game_format= models.ForeignKey(gameformat,
@@ -23,6 +21,9 @@ class Team(models.Model):
 
 
 class Player(models.Model):
+    
+    team = models.ForeignKey(
+        Team, on_delete=models.PROTECT, default=1)
     batsman = 'batsman'
     bowler = 'bowler'
     all_rounder = 'allrounder'
@@ -37,11 +38,12 @@ class Player(models.Model):
         choices=CHOICES,
         default=all_rounder,
     )
-    matches_played_so_far = models.IntegerField()
-    year_of_entry_into_team = models.DateTimeField()
-
+    hundreds = models.IntegerField(default=0)
+    wickets=models.IntegerField(default=0)
+    
+    
     class Meta:
-        ordering = ('matches_played_so_far',)
+        ordering = ('name',)
 
     def __str__(self):
         return self.name
@@ -59,3 +61,4 @@ class tournament(models.Model):
 
     def __str__(self):
         return self.tournament_name
+
