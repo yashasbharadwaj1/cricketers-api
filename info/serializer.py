@@ -1,3 +1,5 @@
+
+from django.db.models import fields
 from rest_framework import serializers
 from .models import gameformat,Player,tournament,Team
 class playerserializer(serializers.ModelSerializer):
@@ -15,4 +17,5 @@ class gameformatSerializer(serializers.ModelSerializer):
 class tournamentSerializer(serializers.ModelSerializer):
     class Meta:
         model = tournament
-        fields = '__all__'                    
+        fields = '__all__'    
+          

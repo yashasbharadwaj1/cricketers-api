@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -43,6 +42,7 @@ INSTALLED_APPS = [
     #3rd party apps
     'rest_framework',
     'rest_framework.authtoken',
+    'drf_yasg',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -51,13 +51,18 @@ INSTALLED_APPS = [
 ]
 
 REST_FRAMEWORK={
+    
     'DEFAULT_PERMISSION_CLASSES':[
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES':[
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
-    ]
+    ],
+}
+SWAGGER_SETTINGS ={
+    'LOGIN_URL':'rest_framework:login',
+    'LOGOUT_URL':'rest_framework:logout',
 }
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

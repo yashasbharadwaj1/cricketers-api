@@ -2,8 +2,9 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import  tournament,Player,Team,gameformat
-from rest_framework import generics,permissions
+from rest_framework import generics
 from .serializer import playerserializer,teamSerializer,gameformatSerializer,tournamentSerializer
+
 
 @api_view(['GET'])
 def apiOverview(request):
@@ -18,7 +19,7 @@ def apiOverview(request):
     }
     return Response(api_urls)
 
-class PlayerAPIView(generics.ListAPIView):
+class PlayerAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Player.objects.all()
     serializer_class = playerserializer
 class teamAPIView(generics.RetrieveUpdateDestroyAPIView):
@@ -63,3 +64,4 @@ def deletePlayer(request, pk):
     player = Player.objects.get(id=pk)
     player.delete()
     return Response('Items delete successfully!')
+
