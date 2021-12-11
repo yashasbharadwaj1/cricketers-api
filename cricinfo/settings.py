@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
-import django_heroku
+
 from pathlib import Path
 
 
@@ -42,13 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     #local app
     'info',
+   
     #3rd party apps
     'rest_framework',
     'rest_framework.authtoken',
-    'drf_yasg',
+    
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
+   
     'rest_auth',
     'rest_auth.registration',
 ]
@@ -68,6 +69,7 @@ SWAGGER_SETTINGS ={
     'LOGOUT_URL':'rest_framework:logout',
 }
 MIDDLEWARE = [
+    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -82,7 +84,7 @@ ROOT_URLCONF = 'cricinfo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -153,10 +155,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-django_heroku.settings(locals())
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SITE_ID=1
+

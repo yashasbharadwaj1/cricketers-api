@@ -4,13 +4,13 @@ from rest_framework.decorators import api_view
 from .models import  tournament,Player,Team,gameformat
 from rest_framework import generics
 from .serializer import playerserializer,teamSerializer,gameformatSerializer,tournamentSerializer
-
+def home(request):
+    return render(request,'index.html')
 
 @api_view(['GET'])
 def apiOverview(request):
     api_urls = {
         'team_list':'/team-list/<int:id>/',
-        'List': '/player-list/',
         'Detail View': '/player-detail/<int:id>/',
         'Create': '/player-create/',
         'Update': '/player-update/<int:id>/',
