@@ -19,7 +19,7 @@ def apiOverview(request):
     }
     return Response(api_urls)
 
-class PlayerAPIView(generics.RetrieveUpdateDestroyAPIView):
+class PlayerAPIView(generics.ListAPIView):
     queryset = Player.objects.all()
     serializer_class = playerserializer
 class teamAPIView(generics.RetrieveUpdateDestroyAPIView):

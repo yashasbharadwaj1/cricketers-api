@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
  <head>
-   <title>api</title>
+   <title>playersapi</title>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <style type="text/css">
 		body{
-		  background: yellowgreen;
+		  background: white;
 		}
 
 
@@ -39,12 +39,7 @@
  		  padding:40px;
 		}
 
-		#submit{
-		  background-color: #36d9b6;
-		  border-radius: 0;
-		  border:0;
-		  color: #fff;
-		}
+
 
 		.flex-wrapper{
 			display: flex;
@@ -69,12 +64,7 @@
     <div id="form-wrapper">
       <form id="form">
         <div class="flex-wrapper">
-          <div style="flex: 6">
-            <input id="title" class="form-control" type="text" name="title" placeholder="Add task">
-          </div>
-          <div style="flex:6">
-            <input id="submit" class="btn" type="submit" >
-          </div>
+			<h1>player details</h1>
         </div>
       </form>
     </div>
@@ -86,16 +76,17 @@
 
 </div>
     <script type="text/javascript">
+	
    
       buildList()
   
       function buildList(){
         var wrapper = document.getElementById('list-wrapper')
-        //wrapper.innerHTML = ''
+        wrapper.innerHTML = ''
   
   
   
-        var url = 'http://127.0.0.1:8000/tournament-list'
+        var url = 'http://127.0.0.1:8000/player-list'
   
         fetch(url)
         .then((resp) => resp.json())
@@ -107,7 +98,7 @@
           var item = `
 						<div id="data-row-${i}" class="task-wrapper flex-wrapper">
 							<div style="flex:7">
-								<span class="tournament">${list[i].tournament_name}</span>
+								<p>${list[i].name}  ,role:${list[i].role_in_team}  ,hundreds:${list[i].hundreds}</p>
 							</div>
 				
 					`
@@ -117,6 +108,9 @@
           }
       })
     }
+
+
+
     </script>
 </body>
 </html>

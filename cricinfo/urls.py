@@ -12,6 +12,7 @@ urlpatterns = [
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
     path('overview/', apiOverview, name='apiOverview'),
     path('team-list/<int:pk>', teamAPIView.as_view(), name='team-list'),
+    path('player-list/',PlayerAPIView.as_view(), name='player-list'),
     path('player-detail/<int:pk>/', ViewPlayer, name='player-detail'),
     path('player-create/', CreatePlayer, name='player-create'),
     path('player-update/<int:pk>/', updatePlayer, name='player-update'),
