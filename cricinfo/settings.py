@@ -45,6 +45,7 @@ INSTALLED_APPS = [
    
     #3rd party apps
     'rest_framework',
+    'corsheaders',
     'rest_framework.authtoken',
     
     'allauth',
@@ -64,12 +65,9 @@ REST_FRAMEWORK={
         'rest_framework.authentication.TokenAuthentication',
     ],
 }
-SWAGGER_SETTINGS ={
-    'LOGIN_URL':'rest_framework:login',
-    'LOGOUT_URL':'rest_framework:logout',
-}
+
 MIDDLEWARE = [
-    
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -78,7 +76,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+CORS_ALLOW_ALL_ORIGINS = True
 ROOT_URLCONF = 'cricinfo.urls'
 
 TEMPLATES = [

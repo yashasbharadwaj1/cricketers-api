@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
  <head>
-   <title>playersapi</title>
+   <title>api</title>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <style type="text/css">
 		body{
@@ -58,6 +58,7 @@
 
  </head>
  <body>
+	 <!--1--> 
  <div class="container">
 
   <div id="task-container">
@@ -75,17 +76,32 @@
   </div>
 
 </div>
+ <!--2-->
+<div class="container">
+	<div id="task-container">
+	  <div id="form-wrapper">
+		<form id="form">
+		  <div class="flex-wrappers">
+			  <h1>tournament details</h1>
+		  </div>
+		</form>
+	  </div>
+	  <div id="list-wrappers">
+	  </div>	
+	</div>
+  
+  </div>
+
+
+
+
     <script type="text/javascript">
-	
-   
+
       buildList()
   
       function buildList(){
         var wrapper = document.getElementById('list-wrapper')
         wrapper.innerHTML = ''
-  
-  
-  
         var url = 'http://127.0.0.1:8000/player-list'
   
         fetch(url)
@@ -98,7 +114,9 @@
           var item = `
 						<div id="data-row-${i}" class="task-wrapper flex-wrapper">
 							<div style="flex:7">
-								<p>${list[i].name}  ,role:${list[i].role_in_team}  ,hundreds:${list[i].hundreds}</p>
+								<p>${list[i].name}  ,role:${list[i].role_in_team}  ,hundreds:${list[i].hundreds}, 
+									wickets:${list[i].wickets} ,team id:${list[i].team}</p>
+
 							</div>
 				
 					`
@@ -109,7 +127,34 @@
       })
     }
 
+    buildList1()
+  
+      function buildList1(){
+        var wrapper = document.getElementById('list-wrappers')
+        wrapper.innerHTML = ''
+        var url = 'http://127.0.0.1:8000/tournament-list'
+  
+        fetch(url)
+        .then((resp) => resp.json())
+        .then(function(data){
+          console.log('Data:', data)
+          var list = data
+				for (var i in list){
 
+          var item = `
+						<div id="data-row-${i}" class="task-wrapper flex-wrappers">
+							<div style="flex:7">
+								<p>${list[i].tournament_name},team_id:${list[i].team},no_of_titles:${list[i].no_of_titles}</p>
+
+							</div>
+				
+					`
+					wrapper.innerHTML += item
+	
+				
+          }
+      })
+    }
 
     </script>
 </body>
