@@ -30,7 +30,6 @@
 		}
 
 		#form-wrapper{
-		  position: -webkit-sticky;
 		  position: sticky;
 		  top: 0rem;
 		  border-bottom: 1px solid  #e9e9e9;
@@ -58,7 +57,25 @@
 
  </head>
  <body>
-	 <!--1--> 
+	  <!--1--> 
+	<div class="container">
+
+		<div id="task-container">
+		  <div id="form-wrapper">
+			<form id="form">
+			  <div class="flex-wrapper">
+				  <h1>team details</h1>
+			  </div>
+			</form>
+		  </div>
+	  
+		  <div id="list-wrap">
+		  
+		  </div>	
+		</div>
+	  
+
+	 <!--2--> 
  <div class="container">
 
   <div id="task-container">
@@ -76,7 +93,7 @@
   </div>
 
 </div>
- <!--2-->
+ <!--3-->
 <div class="container">
 	<div id="task-container">
 	  <div id="form-wrapper">
@@ -155,6 +172,37 @@
           }
       })
     }
+
+    
+	buildList3()
+  
+	function buildList3(){
+	  var wrapper = document.getElementById('list-wrap')
+	  wrapper.innerHTML = ''
+	  var url = 'http://127.0.0.1:8000/team-view'
+
+	  fetch(url)
+	  .then((resp) => resp.json())
+	  .then(function(data){
+		console.log('Data:', data)
+		var list = data
+			  for (var i in list){
+
+		var item = `
+					  <div id="data-row-${i}" class="task-wrapper flex-wrapper">
+						  <div style="flex:7">
+							  <p>id:${list[i].id}, team_name:${list[i].name},gameformat_id:${list[i].game_format}</p>
+
+						  </div>
+			  
+				  `
+				  wrapper.innerHTML += item
+  
+			  
+		}
+	})
+  }
+
 
     </script>
 </body>

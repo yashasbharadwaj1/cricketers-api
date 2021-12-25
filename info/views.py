@@ -13,8 +13,20 @@ def home(request):
 @api_view(['GET'])
 def apiOverview(request):
     api_urls = {
- 
-        
+        1:'tournament-crudlist/<int:pk>/',
+        2:'tournament-list/',
+        3:'team-view/',
+        4:'team-crudview/<int:pk>/',
+        5:'format-view/',
+        6:'format-crudview/<int:pk>/',
+        7:'socials-view/',
+        8:'socials-crudview/<int:pk>/',
+        9: 'player-list/',
+       10:'player-detail/<int:pk>/', 
+       11:'player-create/', 
+       12:'player-update/<int:pk>/', 
+      13:'player-delete/<int:pk>/'
+     
     }
     return Response(api_urls)
 
