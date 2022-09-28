@@ -1,15 +1,19 @@
 from django.db import models
-#commentators,pitchreport inheriting gameformat,
+
+
+# commentators,pitchreport inheriting gameformat,
 class gameformat(models.Model):
     format = models.CharField(max_length=150, blank=False, default='')
 
     def __str__(self):
         return self.format
+
+
 class Team(models.Model):
     name = models.CharField(max_length=250)
-    game_format= models.ForeignKey(gameformat,
-                                       related_name='formats',
-                                       on_delete=models.CASCADE)
+    game_format = models.ForeignKey(gameformat,
+                                    related_name='formats',
+                                    on_delete=models.CASCADE)
 
     class Meta:
         ordering = ('name',)
@@ -19,7 +23,6 @@ class Team(models.Model):
 
 
 class Player(models.Model):
-    
     team = models.ForeignKey(
         Team, on_delete=models.PROTECT, default=1)
     batsman = 'batsman'
@@ -37,9 +40,8 @@ class Player(models.Model):
         default=all_rounder,
     )
     hundreds = models.IntegerField(default=0)
-    wickets=models.IntegerField(default=0)
-    
-    
+    wickets = models.IntegerField(default=0)
+
     class Meta:
         ordering = ('name',)
 
@@ -60,9 +62,9 @@ class tournament(models.Model):
     def __str__(self):
         return self.tournament_name
 
-class Social_life(Player):
-    instagram_followers=models.IntegerField(default=0)
-    facebook_followers=models.IntegerField(default=0)
-    cars_owned=models.IntegerField(default=0)
-    is_married=models.BooleanField(default=False)
 
+class Social_life(Player):
+    instagram_followers = models.IntegerField(default=0)
+    facebook_followers = models.IntegerField(default=0)
+    cars_owned = models.IntegerField(default=0)
+    is_married = models.BooleanField(default=False)
